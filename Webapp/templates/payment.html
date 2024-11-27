@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Page - Furniture Shop</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+        }
+        .background-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensure the image covers the entire container */
+        }
+        .content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%); /* Centers the content both vertically and horizontally */
+            text-align: center;
+            color: white; /* Makes text readable against the background */
+            margin-top:-180px;
+        }
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            color: white;
+        }
+        button {
+            padding: 15px 30px;
+            font-size: 1.2em;
+            background-color: grey;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+<form method="post" action="#">
+    {% csrf_token %}
+    <div class="container">
+    <img src="{% static 'webpage/images/pay2.jpg' %}" class="background-image" alt="Payment Image">
+    <div class="content">
+        <h1>PROCEED TO PAY</h1>
+        <h6>{{request.session.name}}</h6>
+        <input type="hidden" name="">
+        <button type="submit">Make Payment</button>
+    </div>
+</div>
+</form>
+<script src="https://checkout.razorpay.com/v1/checkout.js"
+        data-key="rzp_test_T8LJkDEUaCLwQB"
+        data-amount="{{payy_str}}"
+        data-currency="INR"
+        data-order_id="{{payment.order_id}}"
+        data-buttontext=""
+        data-name="DECOR"
+        data-description="Your description"
+        data-image=""
+        data-prefill.name="abc"
+        data-prefill.email="abc@gmail.com"
+        data-theme.color="#4badeb"
+>
+</script>
+</body>
+</html>

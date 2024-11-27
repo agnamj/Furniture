@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Category</title>
+</head>
+<body>
+<form method="post" action="{% url 'update_product' pro_id=pro.id %}" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="col-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Category Details</h4>
+                  <p class="card-description">
+                  </p>
+                  <form class="forms-sample">
+                  <div class="form-group">
+                    <select class="form-control form-control-lg" id="exampleFormControlSelect1" name="cname">
+                        <option>{{pro.category_name}}</option>
+                      {% for i in cat %}
+                        <option>{{i.category_n}}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                    <div class="form-group">
+                      <label for="exampleInputName1">Product Name</label>
+                      <input type="text" class="form-control" id="exampleInputName1" name="pname" placeholder="Name" value="{{pro.pro_name}}">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputEmail3"></label>
+                      <input type="number" class="form-control" id="exampleInputEmail3" placeholder="Quantity" value="{{pro.Quantity}}">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputPassword4">MRP</label>
+                      <input type="number" class="form-control" id="exampleInputPassword4" placeholder="MRP" value="{{pro.Mrp}}">
+                    </div>
+<!--                    <div class="form-group">-->
+<!--                      <label for="exampleSelectGender">Gender</label>-->
+<!--                        <select class="form-control" id="exampleSelectGender">-->
+<!--                          <option>Male</option>-->
+<!--                          <option>Female</option>-->
+<!--                        </select>-->
+<!--                      </div>-->
+<!--                    <div class="form-group">-->
+<!--                      <label>File upload</label>-->
+<!--                      <input type="file" name="img[]" class="file-upload-default">-->
+<!--                      <div class="input-group col-xs-12">-->
+<!--                        <input type="text" class="form-control file-upload-info" disabled="" name="image" placeholder="Upload Image">-->
+<!--                        <span class="input-group-append">-->
+<!--                          <button class="file-upload-browse btn btn-primary" type="button">Upload</button>-->
+<!--                        </span>-->
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                    <div class="form-group">-->
+<!--                      <label for="exampleInputCity1">City</label>-->
+<!--                      <input type="text" class="form-control" id="exampleInputCity1" placeholder="Location">-->
+<!--                    </div>-->
+                    <div class="form-group">
+                      <label for="exampleTextarea1">Description</label>
+                      <textarea class="form-control" id="exampleTextarea1" name="desc" rows="4">{{pro.Description}}</textarea>
+                    </div>
+                      <div class="form-group">
+                      <label for="exampleTextarea1">Country of orgin</label>
+                      <input type="text" class="form-control" id="exampleTextarea1" name="coun" placeholder="Country of orgin" value="{{pro.country}}"></input>
+                    </div>
+                      <div class="form-group">
+                      <label for="exampleTextarea1">Manufactured By</label>
+                      <input type="text" class="form-control" id="exampleTextarea1" name="manu" placeholder="Manufactured By" value="{{pro.manufactured}}"></input>
+                    </div>
+                       <div class="mb-3">
+                                <label for="formFileMultiple" class="form-label">Upload product image</label>
+                                    <img src="{{pro.category_image1.url}}" width="70px" height="70px">
+                                <input class="form-control bg-dark" type="file" name="image1" id="formFileMultiple" multiple="" value="{{pro.category_image1}}">
+
+                                <label for="formFileMultiple" class="form-label">Upload product image</label>
+                                    <img src="{{pro.category_image2.url}}" width="70px" height="70px">
+                                <input class="form-control bg-dark" type="file" name="image2" id="formFileMultiple" multiple="" value="{{pro.category_image2}}">
+
+                                <label for="formFileMultiple" class="form-label">Upload product image</label>
+                                    <img src="{{pro.category_image3.url}}" width="70px" height="70px">
+                                <input class="form-control bg-dark" type="file" name="image3" id="formFileMultiple" multiple="" value="{{pro.category_image3}}">
+                            </div>
+                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                    <button class="btn btn-light">Cancel</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+</form>
+</body>
+</html>
+{% endblock %}

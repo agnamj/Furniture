@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Display category</title>
+</head>
+<body>
+<div class="col-lg-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Category Details</h4>
+                  <p class="card-description">
+                    Add class <code>.table</code>
+                  </p>
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>Category Name</th>
+                          <th>Category Image</th>
+                          <th>Description</th>
+                          <th>Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      {% for i in cat %}
+                        <tr>
+                          <td>{{i.category_n}}</td>
+                          <td>
+                              <img src="{{i.category_image.url}}" width="70px" height="70px">
+                          </td>
+                          <td>{{i.description}}</td>
+                          <td><a href="{% url 'edit_categories' cate_id=i.id %}" class="badge badge-danger">Edit</a></td>
+                          <td><a href="{% url 'delete_category' cate_id=i.id %}" class="badge badge-danger">DELETE</a></td>
+                        </tr>
+                      {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+{% if messages %}
+    {% for i in messages %}
+        {% if i.tags == 'success' %}
+        <script>
+            swal('{{i}}', '', 'success')
+        </script>
+        {% elif i.tags == 'success' %}
+            <script>
+                swal('{{i}}', '', 'error')
+            </script>
+        {% elif i.tags == 'success' %}
+            <script>
+                swal('{{i}}', '', warning')
+            </script>
+        {% else %}
+            <script>
+                swal('{{i}}', '', 'info')
+            </script>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+</body>
+</html>
+{% endblock %}
